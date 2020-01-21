@@ -1,4 +1,4 @@
-init();
+
 
 //history list 
 
@@ -9,18 +9,21 @@ init();
 
 function renderlists() {
 
-  
-
+  $("#historyList").empty();
 
   for (var i = 0; i < 10; i++) {
+    console.log(lists[i])
     var list = lists[i];
-
-    var $li = $("<li>");
+    var $li = $("<button>");
     $li.text(list);
+    $li.addClass("btn btn-block ");
+    $li.attr("id","history-term");
+    $li.attr("style", "color:black");
+    $li.attr("style", "blackground-color:e9ecef");
     $li.attr("data-index", i);
-    $("#historyList").append(li);
+    $("#historyList").append($li);
   }
-}
+};
 
 function init() {
 
@@ -30,22 +33,28 @@ function init() {
     lists = storedLists;
   }
 
-  
   renderlists();
-}
+};
 
 function storelists() {
   
   localStorage.setItem("lists", JSON.stringify(lists));
 }
 
+
 $( "#clear-search" ).click(function() {
+
   $("#historyList").empty();
+  lists=[];
+  localStorage.clear();
+  storelists();
+  renderlists();
 });
 
 
 $("#run-search").on("click", function (event) {
     event.preventDefault();
+    
     var apiKey = "969b3294dab1170e5514e2ab39bbd849";
     var city = $("#search-term")
         .val()
@@ -54,19 +63,7 @@ $("#run-search").on("click", function (event) {
     var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + apiKey;
     var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + apiKey;
 
-
-    $.ajax({
-        url: weatherURL,
-        method: "GET"
-    }).then(updateCityPage);
-
-    $.ajax({
-        url: forecastURL,
-        method: "GET"
-    }).then(updateForecastPage);
-
-
-  //storing search list
+      //storing search list
   
 
   if (city === "") {
@@ -80,6 +77,19 @@ $("#run-search").on("click", function (event) {
   
   storelists();
   renderlists();
+
+    $.ajax({
+        url: weatherURL,
+        method: "GET"
+    }).then(updateCityPage);
+
+    $.ajax({
+        url: forecastURL,
+        method: "GET"
+    }).then(updateForecastPage);
+
+
+
 
 
 });
@@ -108,6 +118,7 @@ function updateCityPage(Data) {
         url: uvURL,
         method: "GET"
     }).then(function (r) {
+
         $("#uvIndex").text(r.value);
 
         console.log(r)
@@ -117,11 +128,9 @@ function updateCityPage(Data) {
     var iconcode =  Data.weather[0].icon;
     var iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
     
-    var $cardIcon = $("<img>");
-    $cardIcon.attr("src", iconurl);
-
- 
-    $("#cardTitle").append($cardIcon);
+    
+    
+    $("#weatherIcon").attr("src", iconurl);
     $("#city").text(Data.name + "( " + today + " )");
     $("#temp").text("Temperature: " + Data.main.temp + "°");
     $("#humidity").text("Humidity: " + Data.main.humidity);
@@ -129,9 +138,11 @@ function updateCityPage(Data) {
 
     console.log(Data)
     console.log(Data.weather[0].icon)
-    console.log($cardIcon)
+   
 
 };
+
+
 
 
 
