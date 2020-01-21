@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="./bootstrap.css" />
+
+</head>
+
+<body>
+
+
+    <div class="container jumbotron">
+        <h1 class="text-center">
+            <strong>
+                <i class="fa fa-newspaper-o"></i> Weahter Dashboard</strong>
+        </h1>
+
+        <hr>
+        <div class="row">
+            <div class="col-lg-4">
+
+                <div class="card text-white bg-secondary mb-3">
+                    <div class="card-header">
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search for a city"
+                                id="search-term">
+                            <button class="btn btn-secondary my-2 my-sm-0" type="submit" id="run-search">Search</button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <ul id="historyList"></ul>
+                    </div>
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit" id="clear-search">Clear</button>
+                </div>
+
+            </div>
+
+            <div class="col-lg-8">
+
+                <div class="row card text-white bg-secondary mb-3">
+                    <div class="card-body" id="serach-result">
+                        
+                        <div class="card-title" id="cardTitle"><h4 id="city"></h4></div>
+
+                        <ul class="list-group list-group-flush card-body" style="background-color:#e9ecef; color: #2FA4E7;">
+                            
+                            <li class="list-group-item" id="temp">Temperature</li>
+                            <li class="list-group-item" id="humidity">Humidity</li>
+                            <li class="list-group-item" id="wind">Wind</li>
+                            <li class="list-group-item" >UV Index : <a style="background-color: red; border-radius: 0.25rem;" id="uvIndex"></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="row card text-white bg-secondary mb-3">
+                    <h4 class="card-title"> 5-day Forecast:</h4>
+                        <div id="forecast" style="max-width: 8rem;">
+                        <!-- <div class="card-header" >Header</div>
+                        <div class="card-body">
+                          <p class="card-text">12321</p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="./weather.js"></script>
+</body>
+
+</html>
