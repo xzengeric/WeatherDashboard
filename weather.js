@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  //set one default 
+ 
 
   //get today's date
 
@@ -14,9 +16,9 @@ $(document).ready(function () {
 
   var lists = [];
   var storedWeatherDate = [];
-
-  init();
-
+  var apiKey = "969b3294dab1170e5514e2ab39bbd849";
+  // init();
+a();
   function renderlists() {
 
     $("#historyList").empty();
@@ -47,7 +49,44 @@ $(document).ready(function () {
 
   };
 
+
+
+  function a(){
+
+    navigator.geolocation.watchPosition(position => {
+      console.log(position.coords.latitude)
+      console.log(position.coords.longitude)
+      var lat = position.coords.latitude;
+      var lon = position.coords.longitude;
+
+      var coordsURL = "https:// api.openweathermap.org/data/2.5/weather?"+ "&lat=" + lat + "&lon=" + lon + "&appid=" + apiKey ;
+
+      $.ajax({
+        url: coordsURL,
+        method: "GET"
+      }).then(function(r){
+
+        console.log(r);
+      })
+
+      
+
+    })
+  }
+
+
   function init() {
+
+    // var lat = ""
+    // navigator.geolocation.getCurrentPosition(position => {
+    //   console.log(position)
+    //   console.log(position.coords.latitude)
+    //   console.log(position.coords.longitude)
+  
+      
+      
+    // })
+  
 
     var storedLists = JSON.parse(localStorage.getItem("lists"));
     var storedListsWeather = JSON.parse(localStorage.getItem("storedWeatherDate"));
@@ -63,7 +102,7 @@ $(document).ready(function () {
       storedWeatherDate = storedListsWeather;
 
     }
-
+    
     renderlists();
   };
 
@@ -89,7 +128,7 @@ $(document).ready(function () {
   $("#run-search").on("click", function (event) {
     event.preventDefault();
 
-    var apiKey = "969b3294dab1170e5514e2ab39bbd849";
+    
     var city = $("#search-term")
       .val()
       .trim();
@@ -129,7 +168,7 @@ $(document).ready(function () {
 
     storedWeatherDate = [];
 
-    var apiKey = "969b3294dab1170e5514e2ab39bbd849";
+    
     var city = $("#search-term")
       .val()
       .trim();
