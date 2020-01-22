@@ -32,7 +32,7 @@
                         </form>
                     </div>
                     <div class="card-body">
-                        <ul id="historyList" ></ul>
+                        <ul id="historyList"></ul>
                     </div>
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit" id="clear-search">Clear</button>
                 </div>
@@ -41,31 +41,30 @@
 
             <div class="col-lg-8">
 
-                <div class="row card text-white bg-secondary mb-3">
-                    <div class="card-body" id="serach-result">
-                        
+                <div class="row card text-white bg-secondary mb-3" id="search-result">
+                    <div class="card-body">
+
                         <div class="card-title" id="cardTitle">
                             <h4 id="city"></h4>
                             <img id="weatherIcon"></img>
                         </div>
 
-                        <ul class="list-group list-group-flush card-body" style="background-color:#e9ecef; color: #2FA4E7;">
-                            
+                        <ul class="list-group list-group-flush card-body"
+                            style="background-color:#e9ecef; color: #2FA4E7;">
+
                             <li class="list-group-item" id="temp">Temperature</li>
                             <li class="list-group-item" id="humidity">Humidity</li>
                             <li class="list-group-item" id="wind">Wind</li>
-                            <li class="list-group-item" >UV Index : <a style="background-color: red; border-radius: 0.25rem;" id="uvIndex"></a></li>
+                            <li class="list-group-item">UV Index : <a
+                                    style="background-color: red; border-radius: 0.25rem;" id="uvIndex"></a></li>
                         </ul>
 
                     </div>
                 </div>
-                <div class="row card text-white bg-secondary mb-3">
-                    <h4 class="card-title"> 5-day Forecast:</h4>
-                        <div id="forecast" style="max-width: 8rem;">
-                        <!-- <div class="card-header" >Header</div>
-                        <div class="card-body">
-                          <p class="card-text">12321</p>
-                        </div> -->
+                <div class="card text-white bg-secondary mb-3">
+                    <h4 class="card-title"> 5-day Forecast: ( Display after search)</h4>
+                    <div id="forecast" >
+
                     </div>
                 </div>
             </div>
