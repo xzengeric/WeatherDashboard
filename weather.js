@@ -1,6 +1,9 @@
 $(document).ready(function () {
   //set one default 
-
+navigator.geolocation.getCurrentPosition(position => {
+  console.log(position.coords.latitude)
+  console.log(position.coords.longitude)
+})
 
   //get today's date
 
@@ -31,26 +34,27 @@ $(document).ready(function () {
     var storedLists = JSON.parse(localStorage.getItem("lists"));
     var storedListsWeather = JSON.parse(localStorage.getItem("storedWeatherData"));
 
+ 
     if (storedLists !== null) {
       lists = storedLists;
+      city = lists[lists.length-1];
+    } else {
+      city= "redmond";
     }
-
+    
+    
+    
     if (storedListsWeather !== null) {
       storedWeatherData = storedListsWeather;
-    }
-
-
-    if (city === "") {
-      city = "Seattle";
-
+      city = storedWeatherData[1].city ;
     } else {
-      city = $("#search-term")
-        .val()
-        .trim();
-      console.log("check city")
-      console.log(city)
-      console.log($("#search-term").value)
+      city= "redmond";
     }
+
+   
+    console.log(city)
+    
+    
 
     buildURL();
 
@@ -87,6 +91,9 @@ $(document).ready(function () {
 
     $("#historyList").empty();
 
+    storedLists = JSON.parse(localStorage.getItem("lists"));
+    storedListsWeather = JSON.parse(localStorage.getItem("storedWeatherData"));
+
     //history list
     for (var i = 0; i < 10; i++) {
 
@@ -115,11 +122,6 @@ $(document).ready(function () {
     console.log("empty array of storedWeatherData", storedWeatherData)
 
   };
-
-
-
-
-
 
 
   function storelists() {
